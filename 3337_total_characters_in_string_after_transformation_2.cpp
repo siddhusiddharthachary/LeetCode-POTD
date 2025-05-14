@@ -59,7 +59,7 @@ public:
         }
 
         long long total = 0;
-        for (long long num : res) {
+        for (long long num : ans) {
             total = (total + num) % MOD;
         }
 
