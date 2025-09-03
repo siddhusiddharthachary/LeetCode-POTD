@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int numberOfPairs(vector<vector<int>>& points) {
+        int n = points.size();
+        int ans = 0;
+
+        auto lambda = [](vector<int>& point1, vector<int>& point2){
+            if(point1[0]==point2[0]){
+                return point1[1] > point2[1]; 
+            }
+            return point1[0] < point2[0];
+        };
+        sort(begin(points), end(points), lambda);
+
+        for (int i = 0; i < n; i++) {
+            auto& A = points[i]; 
+            int maxY = INT_MIN;
+            for (int j = i+1; j < n; j++) {
+                auto& B = points[j];
+
+                if(B[1] > A[1]){
+                    continue;
+                }
+
+                if(B[1] > maxY){
+                    ans++;
+                    maxY = B[1];
+                }
+            }
+        }
+        return ans;
+    }
+};
